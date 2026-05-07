@@ -1,7 +1,7 @@
 
 
 CREATE DATABASE IF NOT EXISTS ecoloc CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE projetphp;
+USE ecoloc;
 
 CREATE TABLE IF NOT EXISTS utilisateur (
     id_utilisateur  INT          NOT NULL AUTO_INCREMENT,
@@ -11,17 +11,17 @@ CREATE TABLE IF NOT EXISTS utilisateur (
     telephone       VARCHAR(25)  DEFAULT NULL,
     adresse         VARCHAR(255) DEFAULT NULL,
     mot_de_passe    VARCHAR(255) NOT NULL,
-    role            VARCHAR(25)  NOT NULL DEFAULT 'abonne',  -- abonne | admin
+    role            VARCHAR(25)  NOT NULL DEFAULT 'abonne', 
     CONSTRAINT pk_utilisateur PRIMARY KEY (id_utilisateur)
 ) ENGINE=INNODB;
 
 CREATE TABLE IF NOT EXISTS abonne (
     id_abonne   INT         NOT NULL,
-    statut      VARCHAR(25) NOT NULL DEFAULT 'en_attente',  -- en_attente | valide
+    statut      VARCHAR(25) NOT NULL DEFAULT 'en_attente',  
     CONSTRAINT pk_abonne        PRIMARY KEY (id_abonne),
     CONSTRAINT fk_abonne_utilisateur
         FOREIGN KEY (id_abonne) REFERENCES utilisateur(id_utilisateur)
-        ON DELETE CASCADE
+        
 ) ENGINE=INNODB;
 
 
@@ -55,7 +55,7 @@ CREATE TABLE IF NOT EXISTS demande_emprunt (
     CONSTRAINT pk_demande_emprunt       PRIMARY KEY (id_demande),
     CONSTRAINT fk_demande_abonne
         FOREIGN KEY (id_abonne) REFERENCES abonne(id_abonne)
-        ON DELETE CASCADE
+       
 ) ENGINE=INNODB;
 
 
@@ -68,7 +68,7 @@ CREATE TABLE IF NOT EXISTS demande_emprunt_materiel (
         ON DELETE CASCADE,
     CONSTRAINT fk_dem_mat_materiel
         FOREIGN KEY (id_materiel) REFERENCES materiel(id_materiel)
-        ON DELETE CASCADE
+       
 ) ENGINE=INNODB;
 
 
