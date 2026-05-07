@@ -65,7 +65,6 @@ CREATE TABLE IF NOT EXISTS demande_emprunt_materiel (
     CONSTRAINT pk_demande_materiel  PRIMARY KEY (id_demande, id_materiel),
     CONSTRAINT fk_dem_mat_demande
         FOREIGN KEY (id_demande)  REFERENCES demande_emprunt(id_demande)
-        ON DELETE CASCADE,
     CONSTRAINT fk_dem_mat_materiel
         FOREIGN KEY (id_materiel) REFERENCES materiel(id_materiel)
        
